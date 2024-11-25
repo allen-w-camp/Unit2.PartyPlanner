@@ -10,7 +10,6 @@ const state = {
   partyForm.addEventListener("submit", addParty);
   partyList.addEventListener("click", deleteParty);
   
-  // Fetch party data from the API and render it
   async function getParties() {
     try {
       const response = await fetch(API_URL);
@@ -30,7 +29,6 @@ const state = {
   }
   render();
   
-  // Handle form submission
   async function addParty(event) {
     event.preventDefault();
   
@@ -39,15 +37,13 @@ const state = {
     const location = document.querySelector("#location").value;
     const description = document.querySelector("#description").value;
   
-    // Create a new party object
     const newParty = {
       name,
       date,
       location,
       description,
     };
-  
-    // Send a POST request to add the new party
+
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -58,46 +54,38 @@ const state = {
       });
       const json = await response.json();
       console.log(json.data);
-  
-      // Add the new party to the party list
+
       renderParty(json.data);
-  
-      // Clear the form inputs
+
       partyForm.reset();
     } catch (error) {
       console.log(error);
     }
   }
-  
-  // Handle party deletion
+
   async function deleteParty(event) {
     if (event.target.classList.contains("delete-button")) {
-      // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset
       const partyId = event.target.dataset.partyId;
       console.log(partyId);
-  
-      // Send a DELETE request to remove the party
+
       try {
         await fetch(`${API_URL}/${partyId}`, {
           method: "DELETE",
         });
-  
-        // Remove the deleted party from the party list
+
         event.target.parentElement.remove();
       } catch (error) {
         console.log(error);
       }
     }
   }
-  
-  // Render the party list
+
   function renderPartyList() {
     state.parties.forEach((party) => {
       renderParty(party);
     });
   }
-  
-  // Render a party item
+
   function renderParty(party) {
     const li = document.createElement("li");
     li.innerHTML = /* html */ `

@@ -1,51 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="index.js" defer></script>
-    <link rel="stylesheet" href="index.css" />
     <title>Party Planner</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
     <h1>Party Planner</h1>
-    <h2>Schedule a New Party</h2>
-    <form id="addEvent">
-      <label>
-        Name:
-        <br />
-        <br />
-        <input type="text" name="title" placeholder="name" />
-      </label>
+
+    <form id="partyForm">
+      <h2>Schedule a New Party</h2>
+      <label for="name">Name:</label>
       <br />
       <br />
-      <label>
-        Date:
-        <br />
-        <br />
-        <input type="date" name="date" id="date" />
-      </label>
+      <input type="text" id="name" required />
       <br />
       <br />
-      <label>
-        Location:
-        <br />
-        <br />
-        <input type="text" name="location" placeholder="location" />
-      </label>
+      <label for="date">Date:</label>
+      <input type="date" id="date" required />
       <br />
       <br />
-      <label>
-        Description:
-        <br />
-        <br />
-        <input type="text" name="description" placeholder="description" />
-      </label>
+
+      <label for="location">Location:</label>
       <br />
       <br />
-      <button>Submit</button>
+      <input type="text" id="location" required />
+      <br />
+      <br />
+
+      <label for="description">Description:</label>
+      <br />
+      <br />
+      <textarea id="description" required></textarea>
+      <br /><br />
+      <button type="submit">Submit</button>
     </form>
-    <h2>Add Event</h2>
-    <ul id="events"></ul>
+
+    <h2>Party List</h2>
+    <ul id="partyList"></ul>
   </body>
 </html>
